@@ -3,16 +3,26 @@ using System.Collections;
 
 public class GameplayController : MonoBehaviour
 {
-    [SerializeField] private int maxUnits;
-    [SerializeField] private BaseUnit baseUnitPrefab;
+    [SerializeField] private Transform playerSpawPositionRoot;
+    [SerializeField] private GameObject playerPrefab;
 
     private void Start()
     {
-        for (int i = 0; i < maxUnits; i++)
-        {
-            BaseUnit baseUnitClone = Instantiate(baseUnitPrefab);
-            baseUnitClone.transform.parent = this.transform;
-        }
+        SpawnPlayer();
     }
 
+    private void SpawnPlayer()
+    {
+        GameObject playerClone = Instantiate(playerPrefab);
+        playerClone.transform.SetParent(this.transform);
+
+        Transform randomSpawnPosition = GetRandomSpawPoint();
+        playerClone.transform.position = randomSpawnPosition.position;
+    }
+
+    private Transform GetRandomSpawPoint()
+    {
+        Transform[] availableSpawnPosition = playerSpawPositionRoot.GetComponentsInChildren<Transform>();
+        return availableSpawnPosition[Random.Range(0, availableSpawnPosition.Length)];
+    }
 }
