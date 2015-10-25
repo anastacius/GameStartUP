@@ -10,6 +10,7 @@ namespace SerializeProject
         [SerializeField]
         private PlayerData currentPlayerData;
 
+        //The data loader, used to read / write json files
         private DataLoader dataLoader;
 
 #if UNITY_EDITOR
@@ -19,6 +20,7 @@ namespace SerializeProject
 
         private void Start()
         {
+            //Creating a new instance of the data loader
             dataLoader = new DataLoader();
 
             LoadPlayerData();
@@ -28,17 +30,17 @@ namespace SerializeProject
                 SavePlayerData();
             }
             LoadPlayerData();
-            UpdatePlayerAttributes(true);
+            UpdatePlayerAttributes();
         }
 
         private void LoadPlayerData()
         {
-            currentPlayerData = dataLoader.LoadDataObject<PlayerData>(new PlayerData());
+            currentPlayerData = dataLoader.LoadDataObject(currentPlayerData);
         }
 
         private void SavePlayerData()
         {
-            dataLoader.StoreDataObject<PlayerData>(currentPlayerData);
+            dataLoader.StoreDataObject(currentPlayerData);
         }
 
       
@@ -49,7 +51,7 @@ namespace SerializeProject
             {
                 PlayerName = "Player",
                 CurrentExperience = 0,
-                CurrentLevel = 1
+                CurrentLevelSpecification = playerdataConfig.CharacterProgression[0]
             };
             Debug.Log("Created new player");
         }
@@ -57,22 +59,17 @@ namespace SerializeProject
         {
             currentPlayerData.CurrentExperience += xpAmmount;
             SavePlayerData();
-            UpdatePlayerAttributes(false);
+            UpdatePlayerAttributes();
         }
 
-        private void UpdatePlayerAttributes(bool initialLoad)
+        private void UpdatePlayerAttributes()
         {
-            LevelSpecification levelSpecification = GetLevelSpecification();
+            LevelSpecification levelByXP = GetLevelSpecification();
 
-            if(levelSpecification == null)
-                return; 
-
-            if(levelSpecification.Level > currentPlayerData.CurrentLevel && initialLoad == false)
+            if(currentPlayerData.CurrentLevelSpecification != null && levelByXP.Level > currentPlayerData.CurrentLevelSpecification.Level)
                 Debug.Log("Player LEVELED UP");
 
-            currentPlayerData.Health = levelSpecification.Health;
-            currentPlayerData.MoveSpeed = levelSpecification.Movespeed;
-            currentPlayerData.CurrentLevel = levelSpecification.Level;
+            currentPlayerData.CurrentLevelSpecification = levelByXP;
 
         }
 
@@ -86,7 +83,7 @@ namespace SerializeProject
                     currentPlayerData.CurrentExperience < tempLevelSpecification.MaximumExperience)
                     return tempLevelSpecification;
             }
-            return null;
+            return playerdataConfig.CharacterProgression[playerdataConfig.CharacterProgression.Length - 1];
         }
 
 
@@ -102,7 +99,8 @@ namespace SerializeProject
 
             if (hackClearPlayerData)
             {
-                dataLoader.ClearData<PlayerData>(currentPlayerData);
+                dataLoader.ClearData(currentPlayerData);
+                CreateNewPlayerData();
                 hackClearPlayerData = false;
             }
         }

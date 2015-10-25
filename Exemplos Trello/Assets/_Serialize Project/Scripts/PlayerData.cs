@@ -11,10 +11,13 @@ namespace SerializeProject
         [SerializeField]
         private int currentExperience;
 
-        private int currentLevel;
-        private int health;
-        private float moveSpeed;
+        private LevelSpecification currentLevelSpecification;
 
+        public LevelSpecification CurrentLevelSpecification
+        {
+            get { return currentLevelSpecification; }
+            set { currentLevelSpecification = value; }
+        }
 
         public string PlayerName
         {
@@ -27,24 +30,5 @@ namespace SerializeProject
             get { return currentExperience; }
             set { currentExperience = value; }
         }
-        public int CurrentLevel
-        {
-            get { return currentLevel; }
-            set { currentLevel = value; }
-        }
-
-        public int Health
-        {
-            get { return health; }
-            set { health = value; }
-        }
-
-        public float MoveSpeed
-        {
-            get { return moveSpeed; }
-            set { moveSpeed = value; }
-        }
-
-      
     }
 }
