@@ -1,15 +1,16 @@
-﻿using JSON;
+﻿using DataLoading;
 using UnityEngine;
 
 namespace SerializeProject
 {
     public class Player : MonoBehaviour
     {
-        private const string PlayerdataJson = "playerData";
-
         [SerializeField]
         private PlayerDataConfig playerdataConfig;
+        [SerializeField]
         private PlayerData currentPlayerData;
+
+        private DataLoader dataLoader;
 
 #if UNITY_EDITOR
         [SerializeField] private bool hackExperienceUp;
@@ -18,7 +19,10 @@ namespace SerializeProject
 
         private void Start()
         {
-            if (!ExistPlayerData())
+            dataLoader = new DataLoader();
+
+            LoadPlayerData();
+            if(currentPlayerData == null)
             {
                 CreateNewPlayerData();
                 SavePlayerData();
@@ -27,37 +31,17 @@ namespace SerializeProject
             UpdatePlayerAttributes(true);
         }
 
-        private bool ExistPlayerData()
-        {
-            string json = PlayerPrefs.GetString(PlayerdataJson, string.Empty);
-            if (string.IsNullOrEmpty(json))
-                return false;
-
-            return true;
-        }
-
         private void LoadPlayerData()
         {
-            string json = PlayerPrefs.GetString(PlayerdataJson, string.Empty);
-            currentPlayerData = (PlayerData) JSONSerialize.Deserialize(typeof (PlayerData), json);
+            currentPlayerData = dataLoader.LoadDataObject<PlayerData>(new PlayerData());
         }
 
         private void SavePlayerData()
         {
-            if (currentPlayerData == null)
-                return;
-
-            PlayerPrefs.SetString(PlayerdataJson, JSONSerialize.Serialize(currentPlayerData));
+            dataLoader.StoreDataObject<PlayerData>(currentPlayerData);
         }
 
-        private void ClearPlayerData()
-        {
-            string json = PlayerPrefs.GetString(PlayerdataJson, string.Empty);
-            if (!string.IsNullOrEmpty(json))
-            {
-                PlayerPrefs.SetString(PlayerdataJson, string.Empty);
-            }
-        }
+      
 
         private void CreateNewPlayerData()
         {
@@ -67,7 +51,7 @@ namespace SerializeProject
                 CurrentExperience = 0,
                 CurrentLevel = 1
             };
-            Debug.Log(currentPlayerData.PlayerName);
+            Debug.Log("Created new player");
         }
         private void PlayerGainXP(int xpAmmount)
         {
@@ -118,7 +102,7 @@ namespace SerializeProject
 
             if (hackClearPlayerData)
             {
-                ClearPlayerData();
+                dataLoader.ClearData<PlayerData>(currentPlayerData);
                 hackClearPlayerData = false;
             }
         }

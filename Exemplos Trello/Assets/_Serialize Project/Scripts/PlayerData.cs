@@ -1,5 +1,4 @@
 ﻿using System;
-using JSON;
 using UnityEngine;
 
 namespace SerializeProject
@@ -7,14 +6,15 @@ namespace SerializeProject
     [Serializable]
     public class PlayerData
     {
-        [SerializeField] [JSONItem("playerName", typeof (string))]
+        [SerializeField]
         private string playerName;
-        [SerializeField] [JSONItem("playerExperience", typeof (int))]
+        [SerializeField]
         private int currentExperience;
 
         private int currentLevel;
         private int health;
         private float moveSpeed;
+
 
         public string PlayerName
         {
@@ -27,7 +27,6 @@ namespace SerializeProject
             get { return currentExperience; }
             set { currentExperience = value; }
         }
-
         public int CurrentLevel
         {
             get { return currentLevel; }
@@ -45,5 +44,7 @@ namespace SerializeProject
             get { return moveSpeed; }
             set { moveSpeed = value; }
         }
+
+      
     }
 }
