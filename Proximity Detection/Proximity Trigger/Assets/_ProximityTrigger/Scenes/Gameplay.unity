@@ -484,14 +484,14 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 694793620}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5679c2249e5e0e14ea39522fb4173f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnNewEnemyInterval: 1
   maxEnemies: 1
-  enemyPrefab: {fileID: 11448816, guid: cceb16050892c4f418cbf579da70473f, type: 2}
+  enemyPrefab: {fileID: 0}
 --- !u!1 &909047492
 GameObject:
   m_ObjectHideFlags: 0

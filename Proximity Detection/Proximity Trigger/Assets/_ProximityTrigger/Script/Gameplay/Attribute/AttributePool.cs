@@ -12,8 +12,9 @@ namespace Gameplay.Attribute
         {
             Attribute[] childAttributes = transform.GetComponentsInChildren<Attribute>();
             attributes = new Dictionary<AttributeType, Attribute>(childAttributes.Length);
-            foreach (Attribute childAttribute in childAttributes)
+            for (int i = 0; i < childAttributes.Length; i++)
             {
+                Attribute childAttribute = childAttributes[i];
                 if (attributes.ContainsKey(childAttribute.AttributeType))
                 {
                     Debug.Log("Duplicated attribute " + childAttribute.AttributeType, this);
