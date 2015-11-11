@@ -1,8 +1,5 @@
-﻿using System;
-using UnityEngine;
-using System.Collections;
+﻿using UnityEngine;
 using Gameplay.Attribute;
-using UnityEditor;
 
 namespace Gameplay.Unit.Movement
 {
@@ -11,7 +8,7 @@ namespace Gameplay.Unit.Movement
     {
         protected NavMeshAgent navMeshAgent;
         protected Rigidbody rigidBody;
-        protected NewBaseUnit baseUnit;
+        protected BaseUnit baseUnit;
 
         protected float moveSpeedValue;
 
@@ -21,19 +18,20 @@ namespace Gameplay.Unit.Movement
         protected virtual void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
-            baseUnit = GetComponent<NewBaseUnit>();
+            baseUnit = GetComponent<BaseUnit>();
+            rigidBody = GetComponent<Rigidbody>();
+        }
+
+        public virtual void Initialize()
+        {
+            moveSpeedAttribute = baseUnit.AttributePool.GetAttribute(AttributeType.MoveSpeed);
+            moveSpeedAttribute.OnAttributeChange += OnMoveSpeedAttributeChange;
+            OnMoveSpeedAttributeChange(0, moveSpeedAttribute.CurrentValue);
         }
 
         private void OnDisable()
         {
             moveSpeedAttribute.OnAttributeChange -= OnMoveSpeedAttributeChange;
-        }
-
-        public void Initialize()
-        {
-            moveSpeedAttribute = baseUnit.AttributePool.GetAttribute(AttributeType.MoveSpeed);
-            moveSpeedAttribute.OnAttributeChange += OnMoveSpeedAttributeChange;
-            OnMoveSpeedAttributeChange(0, moveSpeedAttribute.CurrentValue);
         }
 
         private void OnMoveSpeedAttributeChange(float prevValue, float currentValue)

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Gameplay.Attribute;
 using Gameplay.Unit.Movement;
 
@@ -7,11 +6,10 @@ using Gameplay.Unit.Movement;
 namespace Gameplay.Unit
 {
     [RequireComponent(typeof(BaseMovement))]
-    public class NewBaseUnit : MonoBehaviour
+    public class BaseUnit : MonoBehaviour
     {
         private AttributePool attributePool;
         private BaseMovement baseMovement;
-
 
         public AttributePool AttributePool
         {
@@ -19,14 +17,14 @@ namespace Gameplay.Unit
         }
 
 
-        private void Awake()
+        protected virtual void Awake()
         {
             baseMovement = GetComponent<BaseMovement>();
             attributePool = GetComponentInChildren<AttributePool>();
         }
 
 
-        private void Start()
+        protected virtual void Start()
         {
             attributePool.GetAttribute(AttributeType.MoveSpeed).Initialize(5, 10);
 
