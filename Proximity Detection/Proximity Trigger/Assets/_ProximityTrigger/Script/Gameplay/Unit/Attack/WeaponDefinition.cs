@@ -34,5 +34,10 @@
         {
             return this.range;
         }
+
+        public int GetDamage()
+        {
+            return this.damage;
+        }
     }
 }

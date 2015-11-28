@@ -9,8 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 482140}
   - 120: {fileID: 12084752}
+  - 114: {fileID: 11493460}
+  - 114: {fileID: 11499702}
   m_Layer: 10
-  m_Name: LineRenderer
+  m_Name: Laser Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,6 +57,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &147494
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 477092}
+  - 114: {fileID: 11444252}
+  m_Layer: 10
+  m_Name: Move Speed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &159032
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +99,7 @@ GameObject:
   - 4: {fileID: 449168}
   - 114: {fileID: 11400964}
   m_Layer: 10
-  m_Name: Move Speed
+  m_Name: Health Speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,6 +128,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 477092}
   - {fileID: 449168}
   m_Father: {fileID: 459548}
   m_RootOrder: 0
@@ -124,7 +143,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 414708}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &459548
 Transform:
   m_ObjectHideFlags: 1
@@ -138,6 +157,18 @@ Transform:
   - {fileID: 414708}
   - {fileID: 409944}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &477092
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 414708}
   m_RootOrder: 0
 --- !u!4 &482140
 Transform:
@@ -169,7 +200,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -220,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd027be33735f64bad081e0ed0cd2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attributeType: 2
+  attributeType: 0
 --- !u!114 &11409416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -260,6 +293,20 @@ MonoBehaviour:
   hitLayerMask:
     serializedVersion: 2
     m_Bits: 4294966271
+  bullet: {fileID: 11493460}
+  maxBulletsPreload: 10
+--- !u!114 &11444252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd027be33735f64bad081e0ed0cd2a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attributeType: 2
 --- !u!114 &11447676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,6 +329,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f55767a57b7f5b4b802fe4ca234599e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11493460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2b23ec74f56544abf055edfbbded86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11499702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22219fff57352b4887a3a1762a48c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sendCreationMessage: 0
+  useCap: 0
+  capAmount: 10
+  reuseMessaging: 0
 --- !u!120 &12084752
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -300,7 +373,9 @@ LineRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

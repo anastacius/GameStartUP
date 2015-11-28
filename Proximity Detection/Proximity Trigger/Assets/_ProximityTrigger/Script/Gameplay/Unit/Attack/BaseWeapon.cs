@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityPooler;
 
 namespace Gameplay.Unit.Attack
 {
@@ -6,12 +7,18 @@ namespace Gameplay.Unit.Attack
     {
         [SerializeField]
         protected LayerMask hitLayerMask;
+        [SerializeField]
+        protected BaseBullet bullet;
+        [SerializeField]
+        protected int maxBulletsPreload = 10;
         protected WeaponDefinition currentWeaponDefinition;
         private float lastShootTime = float.MinValue;
 
         protected virtual void Awake()
         {
-            currentWeaponDefinition = new WeaponDefinition(60, 0.1f, 5, 10);
+            currentWeaponDefinition = new WeaponDefinition(60, 0.1f, 30, 5);
+
+            bullet.gameObject.PopulatePool(maxBulletsPreload);
         }
 
         public virtual bool HaveAmmo()
@@ -26,10 +33,23 @@ namespace Gameplay.Unit.Attack
 
         public virtual void Shoot()
         {
-            Debug.LogFormat("Shoot: {0}", currentWeaponDefinition.GetAmmo());
             lastShootTime = Time.time + currentWeaponDefinition.GetCooldown();
             currentWeaponDefinition.SpentAmmo();
+            BaseBullet bulletClone = bullet.gameObject.Get().GetComponent<BaseBullet>();
+            bulletClone.transform.SetParent(transform);
+            bulletClone.transform.localPosition = Vector3.zero;
+            bulletClone.transform.forward = transform.forward;
+            bulletClone.Initialize(this);
         }
 
+        public WeaponDefinition GetWeaponDefinition()
+        {
+            return currentWeaponDefinition;
+        }
+
+        public LayerMask GetWeaponLayerMask()
+        {
+            return hitLayerMask;
+        }
     }
 }
