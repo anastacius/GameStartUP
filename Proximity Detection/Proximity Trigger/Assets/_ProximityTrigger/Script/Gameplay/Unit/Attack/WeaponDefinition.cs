@@ -1,11 +1,19 @@
-﻿namespace Gameplay.Unit.Attack
+﻿using System;
+using UnityEngine;
+
+namespace Gameplay.Unit.Attack
 {
+    [Serializable]
     public class WeaponDefinition
     {
+        [SerializeField]
         private int ammo;
+        [SerializeField]
         private float cooldown;
-        private float range;
+        [SerializeField]
         private int damage;
+        [SerializeField]
+        private float range;
 
         public WeaponDefinition(int ammo, float cooldown, float range, int damage)
         {
@@ -17,27 +25,32 @@
 
         public int GetAmmo()
         {
-            return this.ammo;
+            return ammo;
         }
 
         public float GetCooldown()
         {
-            return this.cooldown;
+            return cooldown;
         }
 
         public void SpentAmmo()
         {
-            this.ammo--;
+            ammo--;
         }
 
         public float GetRange()
         {
-            return this.range;
+            return range;
         }
 
         public int GetDamage()
         {
-            return this.damage;
+            return damage;
+        }
+
+        public void AddAmmo(int ammoAmount)
+        {
+            ammo += ammoAmount;
         }
     }
 }

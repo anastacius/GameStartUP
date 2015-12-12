@@ -18,6 +18,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &106040
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 432384}
+  m_Layer: 10
+  m_Name: Bullet Exit Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &128140
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,10 +127,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.135000005, y: .224000007, z: -.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 482140}
+  - {fileID: 432384}
   m_Father: {fileID: 459548}
   m_RootOrder: 1
 --- !u!4 &414708
@@ -132,6 +148,18 @@ Transform:
   - {fileID: 449168}
   m_Father: {fileID: 459548}
   m_RootOrder: 0
+--- !u!4 &432384
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106040}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: .574000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 409944}
+  m_RootOrder: 1
 --- !u!4 &449168
 Transform:
   m_ObjectHideFlags: 1
@@ -295,6 +323,12 @@ MonoBehaviour:
     m_Bits: 4294966271
   bullet: {fileID: 11493460}
   maxBulletsPreload: 10
+  currentWeaponDefinition:
+    ammo: 60
+    cooldown: .300000012
+    damage: 50
+    range: 30
+  bulletExitPoint: {fileID: 432384}
 --- !u!114 &11444252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -326,7 +360,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 128140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f55767a57b7f5b4b802fe4ca234599e, type: 3}
+  m_Script: {fileID: 11500000, guid: c6734314587c3f24fa1c5222007c4647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11493460
@@ -436,6 +470,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: groundLayer.m_Bits
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: currentWeaponDefinition.cooldown
+      value: .300000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: currentWeaponDefinition.damage
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

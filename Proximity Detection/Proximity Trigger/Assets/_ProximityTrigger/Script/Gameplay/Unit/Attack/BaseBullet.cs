@@ -30,11 +30,11 @@ namespace Gameplay.Unit.Attack
 
         protected void ApplyEffect(IHitByBullet[] affectedObjects)
         {
-            foreach (IHitByBullet affectedObject in affectedObjects)
+            for (int i = 0; i < affectedObjects.Length; i++)
             {
+                IHitByBullet affectedObject = affectedObjects[i];
                 affectedObject.Hit(baseWeapon);
             }
-
         }
     }
 }

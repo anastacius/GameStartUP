@@ -30,11 +30,11 @@ namespace Gameplay.Unit.Attack
 
             finalShootPosition = new Vector3(finalShootPosition.x, transform.position.y, finalShootPosition.z);
 
-            lineRenderer.SetPosition(0, this.transform.position);
+            lineRenderer.SetPosition(0, targetBaseWeapon.GetExitPoint().position);
             lineRenderer.SetPosition(1, finalShootPosition);
 
 
-            this.DestroyBullet(0.3f);
+            this.DestroyBullet(0.15f);
         }
     }
 }

@@ -11,13 +11,16 @@ namespace Gameplay.Unit.Attack
         protected BaseBullet bullet;
         [SerializeField]
         protected int maxBulletsPreload = 10;
-        protected WeaponDefinition currentWeaponDefinition;
+        [SerializeField]
+        protected WeaponDefinition currentWeaponDefinition = new WeaponDefinition(60, 0.1f, 30, 5);
+        [SerializeField]
+        protected Transform bulletExitPoint;
+
+
         private float lastShootTime = float.MinValue;
 
         protected virtual void Awake()
         {
-            currentWeaponDefinition = new WeaponDefinition(60, 0.1f, 30, 5);
-
             bullet.gameObject.PopulatePool(maxBulletsPreload);
         }
 
@@ -50,6 +53,16 @@ namespace Gameplay.Unit.Attack
         public LayerMask GetWeaponLayerMask()
         {
             return hitLayerMask;
+        }
+
+        public Transform GetExitPoint()
+        {
+            return bulletExitPoint;
+        }
+
+        public void AddAmmo(int ammoAmount)
+        {
+            currentWeaponDefinition.AddAmmo(ammoAmount);
         }
     }
 }

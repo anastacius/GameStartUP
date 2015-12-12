@@ -5,24 +5,29 @@ namespace Gameplay.Unit.Attack
 {
     public class AimController : MonoBehaviour
     {
-        private BaseWeapon currentBaseWeapon;
+        private BaseWeapon currentWeapon;
+
+        public BaseWeapon CurrentWeapon
+        {
+            get { return currentWeapon; }
+        }
 
         private void Awake()
         {
-            currentBaseWeapon = GetComponentInChildren<BaseWeapon>();
+            currentWeapon = GetComponentInChildren<BaseWeapon>();
         }
 
         private void Update()
         {
             if (Input.GetMouseButton(0))
             {
-                if(!currentBaseWeapon.HaveAmmo())
+                if(!currentWeapon.HaveAmmo())
                     return;
 
-                if(currentBaseWeapon.IsOnCooldown())
+                if(currentWeapon.IsOnCooldown())
                     return;
 
-                currentBaseWeapon.Shoot();
+                currentWeapon.Shoot();
             }
         }
 
