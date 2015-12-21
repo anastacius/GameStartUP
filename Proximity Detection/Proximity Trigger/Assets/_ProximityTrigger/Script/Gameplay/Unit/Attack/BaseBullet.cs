@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityPooler;
 
 namespace Gameplay.Unit.Attack
 {
@@ -24,7 +23,7 @@ namespace Gameplay.Unit.Attack
         private IEnumerator DestroyBulletAfterSecondsCoroutine(float seconds)
         {
             yield return new WaitForSeconds(seconds);
-            gameObject.Release();
+            SimplePool.Despawn(gameObject);
         }
 
 

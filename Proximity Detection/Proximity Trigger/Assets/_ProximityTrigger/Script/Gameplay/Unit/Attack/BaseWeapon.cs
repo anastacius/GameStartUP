@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityPooler;
+
 
 namespace Gameplay.Unit.Attack
 {
@@ -21,7 +21,7 @@ namespace Gameplay.Unit.Attack
 
         protected virtual void Awake()
         {
-            bullet.gameObject.PopulatePool(maxBulletsPreload);
+            SimplePool.Preload(bullet.gameObject, maxBulletsPreload);
         }
 
         public virtual bool HaveAmmo()
@@ -38,7 +38,7 @@ namespace Gameplay.Unit.Attack
         {
             lastShootTime = Time.time + currentWeaponDefinition.GetCooldown();
             currentWeaponDefinition.SpentAmmo();
-            BaseBullet bulletClone = bullet.gameObject.Get().GetComponent<BaseBullet>();
+            BaseBullet bulletClone = SimplePool.Spawn(bullet.gameObject).GetComponent<BaseBullet>();
             bulletClone.transform.SetParent(transform);
             bulletClone.transform.localPosition = Vector3.zero;
             bulletClone.transform.forward = transform.forward;

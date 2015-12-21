@@ -1,4 +1,0 @@
-[submodule "Proximity Detection/Proximity Trigger/Assets/Unity-Pooler"]
-	path = Proximity Detection/Proximity Trigger/Assets/Unity-Pooler
-	url = https://github.com/badawe/unity-pooler.git
-	branch = master
