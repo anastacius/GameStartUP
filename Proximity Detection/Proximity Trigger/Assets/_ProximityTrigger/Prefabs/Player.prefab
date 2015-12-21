@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 482140}
   - 120: {fileID: 12084752}
   - 114: {fileID: 11493460}
-  - 114: {fileID: 11499702}
   m_Layer: 10
   m_Name: Laser Bullet
   m_TagString: Untagged
@@ -374,21 +373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2b23ec74f56544abf055edfbbded86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11499702
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c22219fff57352b4887a3a1762a48c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sendCreationMessage: 0
-  useCap: 0
-  capAmount: 10
-  reuseMessaging: 0
 --- !u!120 &12084752
 LineRenderer:
   m_ObjectHideFlags: 1
