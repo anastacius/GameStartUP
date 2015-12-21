@@ -1,28 +1,44 @@
 using UnityEngine;
-using System.Collections;
+using Gameplay.Unit;
 
-public class GameplayController : MonoBehaviour
+namespace Gameplay
 {
-    [SerializeField] private Transform playerSpawPositionRoot;
-    [SerializeField] private GameObject playerPrefab;
-
-    private void Start()
+    public class GameplayController : MonoSingleton<GameplayController>
     {
-        SpawnPlayer();
-    }
+        public delegate void OnPlayerSpawnedDelegate(PlayerUnit player);
+        public event OnPlayerSpawnedDelegate OnPlayerSpawnEvent;
 
-    private void SpawnPlayer()
-    {
-        GameObject playerClone = Instantiate(playerPrefab);
-        playerClone.transform.SetParent(this.transform);
+        [SerializeField]
+        private Transform playerSpawPositionRoot;
+        [SerializeField]
+        private GameObject playerPrefab;
 
-        Transform randomSpawnPosition = GetRandomSpawPoint();
-        playerClone.transform.position = randomSpawnPosition.position;
-    }
+        private void Start()
+        {
+            SpawnPlayer();
+        }
 
-    private Transform GetRandomSpawPoint()
-    {
-        Transform[] availableSpawnPosition = playerSpawPositionRoot.GetComponentsInChildren<Transform>();
-        return availableSpawnPosition[Random.Range(0, availableSpawnPosition.Length)];
+        private void SpawnPlayer()
+        {
+            PlayerUnit playerClone = Instantiate(playerPrefab).GetComponent<PlayerUnit>();
+            playerClone.transform.SetParent(this.transform);
+
+            Transform randomSpawnPosition = GetRandomSpawPoint();
+            playerClone.transform.position = randomSpawnPosition.position;
+
+            DispatchOnPlayerSpawnEvent(playerClone);
+        }
+
+        private void DispatchOnPlayerSpawnEvent(PlayerUnit targetPlayer)
+        {
+            if (OnPlayerSpawnEvent != null)
+                OnPlayerSpawnEvent(targetPlayer);
+        }
+
+        private Transform GetRandomSpawPoint()
+        {
+            Transform[] availableSpawnPosition = playerSpawPositionRoot.GetComponentsInChildren<Transform>();
+            return availableSpawnPosition[Random.Range(0, availableSpawnPosition.Length)];
+        }
     }
 }
