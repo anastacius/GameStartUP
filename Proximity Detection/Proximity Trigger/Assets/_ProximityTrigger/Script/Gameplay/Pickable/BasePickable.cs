@@ -14,13 +14,13 @@ namespace Gameplay
         }
         private void OnEnable()
         {
-            triggerVolume.TriggerEnterAction += OnPlayerCollide;
+            triggerVolume.OnTriggerEnterEvent += OnPlayerCollide;
         }
 
 
         private void OnDisable()
         {
-            triggerVolume.TriggerEnterAction -= OnPlayerCollide;
+            triggerVolume.OnTriggerEnterEvent -= OnPlayerCollide;
         }
 
         private void OnPlayerCollide(TriggerVolume triggerVolume, Collider collider)

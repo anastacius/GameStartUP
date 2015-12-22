@@ -23,14 +23,14 @@ namespace Gameplay.Attribute
             }
         }
 
-        public Attribute GetAttribute(AttributeType targetAttribute)
+        public Attribute GetAttribute(AttributeType targetAttributeType)
         {
-            if (!attributes.ContainsKey(targetAttribute))
+            if (!attributes.ContainsKey(targetAttributeType))
             {
-                Debug.Log("Can't found any attribute of type: " + targetAttribute, this);
+                Debug.Log("Can't found any attribute of type: " + targetAttributeType, this);
                 return null;
             }
-            return attributes[targetAttribute];
+            return attributes[targetAttributeType];
         }
     }
 }

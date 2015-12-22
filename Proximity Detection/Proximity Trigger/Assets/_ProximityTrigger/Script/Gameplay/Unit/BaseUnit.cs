@@ -3,7 +3,6 @@ using Gameplay.Attribute;
 using Gameplay.Unit.Attack;
 using Gameplay.Unit.Movement;
 
-
 namespace Gameplay.Unit
 {
     [RequireComponent(typeof(BaseMovement))]

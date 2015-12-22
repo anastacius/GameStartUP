@@ -33,7 +33,7 @@ namespace Gameplay
             playerTransform = player.transform;
         }
 
-        private void LateUpdate()
+        private void Update()
         {
             if(playerTransform == null)
                 return;
