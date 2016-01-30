@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Gameplay.Unit.Movement;
 using Random = UnityEngine.Random;
 
@@ -8,16 +7,24 @@ namespace Gameplay.Unit
     [RequireComponent(typeof (PathAgentController))]
     public class BaseEnemy : BaseUnit
     {
+        [SerializeField]
+        private TriggerVolume sightTriggerVolume;
+
         private PathAgentController pathAgentController;
         private BehaviorState state = BehaviorState.Idle;
-        private TriggerVolume triggerVolume;
+        
         private PlayerUnit currentTarget;
 
         protected override void Awake()
         {
             base.Awake();
             pathAgentController = GetComponent<PathAgentController>();
-            triggerVolume = GetComponentInChildren<TriggerVolume>();
+
+            pathAgentController.OnReachDestination += OnReachDestination;
+
+            sightTriggerVolume.OnTriggerEnterEvent += OnSightTriggerVolumeEnter;
+            sightTriggerVolume.OnTriggerExitEvent += OnSightTriggerVolumeExit;
+
         }
 
         protected override void Start()
@@ -26,36 +33,41 @@ namespace Gameplay.Unit
             ChangeStateTo(BehaviorState.Patrolling);
         }
 
-        private void OnEnable()
-        {
-            pathAgentController.OnReachDestination += OnReachDestination;
-            triggerVolume.OnTriggerEnterEvent += OnTriggerVolumeEnter;
-            triggerVolume.OnTriggerExitEvent += OnTriggerVolumeExit;
-        }
-        private void OnDisable()
+        private void OnDestroy()
         {
             pathAgentController.OnReachDestination -= OnReachDestination;
-            triggerVolume.OnTriggerEnterEvent -= OnTriggerVolumeEnter;
-            triggerVolume.OnTriggerExitEvent -= OnTriggerVolumeExit;
+
+            sightTriggerVolume.OnTriggerEnterEvent -= OnSightTriggerVolumeEnter;
+            sightTriggerVolume.OnTriggerExitEvent -= OnSightTriggerVolumeExit;
+
+           
         }
 
-        private void OnTriggerVolumeExit(TriggerVolume volume, Collider collider)
+
+       
+
+        private void OnSightTriggerVolumeExit(TriggerVolume volume, Collider collider)
         {
             currentTarget = null;
             ChangeStateTo(BehaviorState.Patrolling);
         }
 
-        private void OnTriggerVolumeEnter(TriggerVolume volume, Collider collider)
+        private void OnSightTriggerVolumeEnter(TriggerVolume volume, Collider collider)
         {
             currentTarget = collider.GetComponent<PlayerUnit>();
             ChangeStateTo(BehaviorState.SeekingTarget);
         }
 
-        private void ChangeStateTo(BehaviorState targetState)
+        public void ChangeStateTo(BehaviorState targetState)
         {
             if (state == BehaviorState.Idle && targetState == BehaviorState.Patrolling)
             {
                 SeekNewPosition();
+            }
+            else if (state == BehaviorState.Patrolling && targetState == BehaviorState.Attacking)
+            {
+                pathAgentController.Stop();
+
             }
             state = targetState;
         }

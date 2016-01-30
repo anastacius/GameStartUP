@@ -23,6 +23,10 @@ namespace Gameplay.Unit.Movement
             areaMask = navMeshAgent.areaMask;
         }
 
+        public void Stop()
+        {
+            navMeshAgent.Stop();
+        }
         public void SetDestination(Vector3 targetDestination)
         {
             NavMeshHit navMeshHit;

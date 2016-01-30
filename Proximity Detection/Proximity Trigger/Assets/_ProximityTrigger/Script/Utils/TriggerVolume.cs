@@ -43,7 +43,7 @@ public class TriggerVolume : MonoBehaviour
     }
 
     public event TriggerEventDelegate OnTriggerStayEvent;
-    private void DispatchOnTriggerStayEvent(Collider other)
+    private void DispatchOnTriggerStayEvent(Collider collider)
     {
         if (OnTriggerStayEvent != null)
             OnTriggerStayEvent(this, collider);
