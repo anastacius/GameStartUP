@@ -20,5 +20,6 @@ namespace Gameplay.Unit
             base.Awake();
             aimController = GetComponent<AimController>();
         }
+        
     }
 }

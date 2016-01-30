@@ -25,7 +25,7 @@ namespace Gameplay.Unit.Attack
                 finalShootPosition = hit.point;
 
                 IHitByBullet[] affectedObjects = hit.transform.GetComponents<IHitByBullet>();
-                base.ApplyEffect(affectedObjects);
+                base.ApplyEffect(affectedObjects, hit.point);
             }
 
             finalShootPosition = new Vector3(finalShootPosition.x, transform.position.y, finalShootPosition.z);
@@ -34,7 +34,7 @@ namespace Gameplay.Unit.Attack
             lineRenderer.SetPosition(1, finalShootPosition);
 
 
-            this.DestroyBullet(0.15f);
+            this.DestroyBullet(0.05f);
         }
     }
 }

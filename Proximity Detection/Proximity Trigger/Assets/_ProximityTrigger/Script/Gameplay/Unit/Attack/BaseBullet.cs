@@ -3,6 +3,13 @@ using System.Collections;
 
 namespace Gameplay.Unit.Attack
 {
+    public struct HitInformation
+    {
+        public BaseUnit Shooter;
+        public BaseBullet Bullet;
+        public BaseWeapon Weapon;
+        public Vector3 HitPosition;
+    }
     public class BaseBullet : MonoBehaviour
     {
         protected BaseWeapon baseWeapon;
@@ -27,12 +34,20 @@ namespace Gameplay.Unit.Attack
         }
 
 
-        protected void ApplyEffect(IHitByBullet[] affectedObjects)
+        protected void ApplyEffect(IHitByBullet[] affectedObjects, Vector3 point)
         {
             for (int i = 0; i < affectedObjects.Length; i++)
             {
                 IHitByBullet affectedObject = affectedObjects[i];
-                affectedObject.Hit(baseWeapon);
+
+                HitInformation hitInfo = new HitInformation
+                {
+                    Weapon = baseWeapon,
+                    Bullet = this,
+                    Shooter = baseWeapon.Owner,
+                    HitPosition = point
+                };
+                affectedObject.Hit(hitInfo);
             }
         }
     }

@@ -5,6 +5,6 @@ namespace Gameplay.Unit.Attack
 {
     public interface IHitByBullet
     {
-        void Hit(BaseWeapon baseWeapon);
+        void Hit(HitInformation hitInformation);
     }
 }

@@ -1,18 +1,20 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Gameplay.Unit;
+using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private float spawnNewEnemyInterval = 5.0f;
-    [SerializeField] private int maxEnemies = 10;
+    [SerializeField]
+    private float minimumSpawnNewEnemyInterval = 5.0f;
+    [SerializeField]
+    private float maximumSpawnNewEnemyInterval = 15.0f;
 
-    [SerializeField] private BaseEnemy enemyPrefab;
-
-
-    private List<BaseEnemy> aliveEnemies = new List<BaseEnemy>();
+    
+    [SerializeField]
+    private BaseEnemy enemyPrefab;
     private bool alive;
+
 
     private void Start()
     {
@@ -24,29 +26,16 @@ public class EnemySpawner : MonoBehaviour
         alive = true;
         while (alive)
         {
-            if (CanSpawnMoreEnemies())
-            {
-                SpawNewEnemy();
-            }
-            yield return new WaitForSeconds(spawnNewEnemyInterval);
+            SpawNewEnemy();
+            yield return new WaitForSeconds(Random.Range(minimumSpawnNewEnemyInterval, maximumSpawnNewEnemyInterval));
         }
     }
 
     private void SpawNewEnemy()
     {
-        BaseEnemy enemyClone = Instantiate(enemyPrefab);
-        enemyClone.transform.SetParent(this.transform);
+        BaseEnemy enemyClone = SimplePool.Spawn(enemyPrefab.gameObject).GetComponent<BaseEnemy>();
+        enemyClone.Initialize();
+        enemyClone.transform.SetParent(transform);
         enemyClone.transform.localPosition = Vector3.zero;
-
-        aliveEnemies.Add(enemyClone);
-    }
-
-
-    private bool CanSpawnMoreEnemies()
-    {
-        if (aliveEnemies.Count < maxEnemies)
-            return true;
-
-        return false;
     }
 }

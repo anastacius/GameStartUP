@@ -17,7 +17,12 @@ namespace Gameplay.Unit.Attack
         protected Transform bulletExitPoint;
 
 
+        private BaseUnit owner;
         private float lastShootTime = float.MinValue;
+        public BaseUnit Owner
+        {
+            get { return owner; }
+        }
 
         protected virtual void Awake()
         {
@@ -63,6 +68,11 @@ namespace Gameplay.Unit.Attack
         public void AddAmmo(int ammoAmount)
         {
             currentWeaponDefinition.AddAmmo(ammoAmount);
+        }
+
+        public void Initialize(BaseUnit baseUnit)
+        {
+            owner = baseUnit;
         }
     }
 }

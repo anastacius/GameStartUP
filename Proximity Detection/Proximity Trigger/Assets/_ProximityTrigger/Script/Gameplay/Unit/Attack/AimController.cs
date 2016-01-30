@@ -6,6 +6,7 @@ namespace Gameplay.Unit.Attack
     public class AimController : MonoBehaviour
     {
         private BaseWeapon currentWeapon;
+        private BaseUnit baseUnit;
 
         public BaseWeapon CurrentWeapon
         {
@@ -14,7 +15,9 @@ namespace Gameplay.Unit.Attack
 
         private void Awake()
         {
+            baseUnit = GetComponent<BaseUnit>();
             currentWeapon = GetComponentInChildren<BaseWeapon>();
+            currentWeapon.Initialize(baseUnit);
         }
 
         private void Update()

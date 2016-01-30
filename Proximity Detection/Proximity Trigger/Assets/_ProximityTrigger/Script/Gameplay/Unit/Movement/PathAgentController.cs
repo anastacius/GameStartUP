@@ -17,6 +17,8 @@ namespace Gameplay.Unit.Movement
         private Vector3 startPosition;
         private Vector3 destinationPosition;
 
+        private Coroutine checkDestination;
+
         protected override void Awake()
         {
             base.Awake();
@@ -26,6 +28,12 @@ namespace Gameplay.Unit.Movement
         public void Stop()
         {
             navMeshAgent.Stop();
+
+            if (checkDestination != null)
+            {
+                StopCoroutine(checkDestination);
+                checkDestination = null;
+            }
         }
         public void SetDestination(Vector3 targetDestination)
         {
@@ -40,15 +48,22 @@ namespace Gameplay.Unit.Movement
             startPosition = navMeshHit.position;
             navMeshAgent.SetDestination(navMeshHit.position);
 
+            if (checkDestination != null)
+            {
+                StopCoroutine(checkDestination);
+                checkDestination = null;
+            }
 
-            StopCoroutine(CheckDestination());
-            StartCoroutine(CheckDestination());
+            checkDestination = StartCoroutine(CheckDestination());
         }
 
         private IEnumerator CheckDestination()
         {
             while (!reachDestination)
             {
+                if(!enabled)
+                    continue;
+
                 if (!navMeshAgent.pathPending)
                 {
                     if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)

@@ -22,6 +22,7 @@ namespace Gameplay
         {
             PlayerUnit playerClone = Instantiate(playerPrefab).GetComponent<PlayerUnit>();
             playerClone.transform.SetParent(this.transform);
+            playerClone.Initialize();
 
             Transform randomSpawnPosition = GetRandomSpawPoint();
             playerClone.transform.position = randomSpawnPosition.position;
