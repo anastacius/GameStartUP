@@ -11,6 +11,7 @@ namespace Gameplay.Unit
     {
         private AttributePool attributePool;
         private BaseMovement baseMovement;
+        protected HitInformation lastHitInformation;
 
         public AttributePool AttributePool
         {
@@ -60,7 +61,9 @@ namespace Gameplay.Unit
 
         public virtual void Hit(HitInformation hitInformation)
         {
-            attributePool.GetAttribute(AttributeType.Health).ChangeValue(-hitInformation.Weapon.GetWeaponDefinition().GetDamage());
+            lastHitInformation = hitInformation;
+            attributePool.GetAttribute(AttributeType.Health)
+                         .ChangeValue(-lastHitInformation.Weapon.GetWeaponDefinition().GetDamage());
         }
     }
 }
