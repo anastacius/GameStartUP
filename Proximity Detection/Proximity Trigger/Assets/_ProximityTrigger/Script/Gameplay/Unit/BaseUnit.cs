@@ -11,6 +11,7 @@ namespace Gameplay.Unit
     {
         private AttributePool attributePool;
         private BaseMovement baseMovement;
+        protected HitInformation lastHitInformation;
 
         public AttributePool AttributePool
         {
@@ -35,6 +36,11 @@ namespace Gameplay.Unit
             attributePool.GetAttribute(AttributeType.MoveSpeed).Initialize(5, 10);
             attributePool.GetAttribute(AttributeType.Health).Initialize(100, 100);
         }
+        public void Initialize(int targetHealth, int targetMoveSpeed)
+        {
+            attributePool.GetAttribute(AttributeType.MoveSpeed).Initialize(targetMoveSpeed, targetMoveSpeed);
+            attributePool.GetAttribute(AttributeType.Health).Initialize(targetHealth, targetHealth);
+        }
 
         protected virtual void OnDestroy()
         {
@@ -55,7 +61,9 @@ namespace Gameplay.Unit
 
         public virtual void Hit(HitInformation hitInformation)
         {
-            attributePool.GetAttribute(AttributeType.Health).ChangeValue(-hitInformation.Weapon.GetWeaponDefinition().GetDamage());
+            lastHitInformation = hitInformation;
+            attributePool.GetAttribute(AttributeType.Health)
+                         .ChangeValue(-lastHitInformation.Weapon.GetWeaponDefinition().GetDamage());
         }
     }
 }

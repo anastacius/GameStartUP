@@ -25,6 +25,13 @@ namespace Gameplay.Unit.Movement
             areaMask = navMeshAgent.areaMask;
         }
 
+        protected override void OnMoveSpeedAttributeChange(float prevValue, float currentValue)
+        {
+            base.OnMoveSpeedAttributeChange(prevValue, currentValue);
+            navMeshAgent.speed = moveSpeedValue;
+            
+        }
+
         public void Stop()
         {
             navMeshAgent.Stop();

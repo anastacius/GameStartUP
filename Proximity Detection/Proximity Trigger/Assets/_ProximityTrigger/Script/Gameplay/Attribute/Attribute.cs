@@ -24,7 +24,9 @@ namespace Gameplay.Attribute
 
         public float Percent {get { return currentValue/maxValue; } }
         public float CurrentValue {get { return currentValue; } }
+        public float MaxValue {get { return maxValue; } }
         public AttributeType AttributeType { get { return attributeType; } }
+
 
         public void Initialize(float initialValue, float maxValue)
         {

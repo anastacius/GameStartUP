@@ -34,7 +34,7 @@ namespace Gameplay.Unit.Movement
             moveSpeedAttribute.OnAttributeChange -= OnMoveSpeedAttributeChange;
         }
 
-        private void OnMoveSpeedAttributeChange(float prevValue, float currentValue)
+        protected virtual void OnMoveSpeedAttributeChange(float prevValue, float currentValue)
         {
             moveSpeedValue = currentValue;
         }

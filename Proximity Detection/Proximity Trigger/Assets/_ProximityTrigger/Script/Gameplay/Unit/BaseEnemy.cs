@@ -8,6 +8,11 @@ namespace Gameplay.Unit
     [RequireComponent(typeof (PathAgentController))]
     public class BaseEnemy : BaseUnit
     {
+        public delegate void BaseEnemyDelegate(BaseEnemy enemy);
+
+        public event BaseEnemyDelegate EnemyDieEvent;
+
+
         [SerializeField]
         private TriggerVolume sightTriggerVolume;
 
@@ -35,8 +40,9 @@ namespace Gameplay.Unit
             ChangeStateTo(BehaviorState.Patrolling);
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
+            base.OnDestroy();
             pathAgentController.OnReachDestination -= OnReachDestination;
 
             sightTriggerVolume.OnTriggerEnterEvent -= OnSightTriggerVolumeEnter;
@@ -108,6 +114,14 @@ namespace Gameplay.Unit
         {
             base.Die();
             SimplePool.Despawn(this.gameObject);
+            DispatchEnemyDie();
+        }
+
+        private void DispatchEnemyDie()
+        {
+            GameplayController.Instance.EnemyDied(lastHitInformation);
+            if (EnemyDieEvent != null)
+                EnemyDieEvent(this);
         }
 
         private void Update()
@@ -117,5 +131,7 @@ namespace Gameplay.Unit
                 pathAgentController.SetDestination(currentTarget.transform.position);
             }
         }
+
+       
     }
 }

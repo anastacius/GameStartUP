@@ -65,6 +65,10 @@ namespace Gameplay.Unit.Attack
             return bulletExitPoint;
         }
 
+        public int AmmoCount()
+        {
+            return currentWeaponDefinition.GetAmmo();
+        }
         public void AddAmmo(int ammoAmount)
         {
             currentWeaponDefinition.AddAmmo(ammoAmount);
