@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Gameplay.Unit.Movement
 {
@@ -27,10 +27,14 @@ namespace Gameplay.Unit.Movement
             }
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             CheckInput();
             Move();
+        }
+
+        private void FixedUpdte()
+        {
             Turn();
         }
 

@@ -1,4 +1,4 @@
-﻿using DG.Tweening;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,12 +13,17 @@ namespace Gameplay.UI
 
         private void Awake()
         {
-            GameplayController.Instance.ScoreController.OnScoreChangedEvent += OnScoreChanged;
+            GameplayController.Instance.ScoreController
+                .OnScoreChangedEvent += OnScoreChanged;
         }
 
         private void OnDestroy()
         {
-            GameplayController.Instance.ScoreController.OnScoreChangedEvent -= OnScoreChanged;
+            if (GameplayController.Instance.ScoreController != null)
+            {
+                GameplayController.Instance.ScoreController
+                    .OnScoreChangedEvent -= OnScoreChanged;
+            }
         }
 
         private void OnScoreChanged(int currentScore)
