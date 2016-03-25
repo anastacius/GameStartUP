@@ -14,6 +14,11 @@ namespace Gameplay.Unit
             get { return aimController; }
         }
 
+        public override void OnStartLocalPlayer()
+        {
+            base.OnStartLocalPlayer();
+            GameplayController.Instance.DispatchOnPlayerSpawnEvent(this);
+        }
 
         protected override void Awake()
         {

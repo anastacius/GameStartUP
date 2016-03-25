@@ -18,8 +18,6 @@ namespace Gameplay
         [SerializeField]
         private ScoreController scoreController;
         [SerializeField]
-        private Transform playerSpawPositionRoot;
-        [SerializeField]
         private GameObject playerPrefab;
 
         public ScoreController ScoreController
@@ -60,12 +58,6 @@ namespace Gameplay
                 OnPlayerSpawnEvent(targetPlayer);
         }*/
 
-        private Transform GetRandomSpawPoint()
-        {
-            Transform[] availableSpawnPosition = playerSpawPositionRoot.GetComponentsInChildren<Transform>();
-            return availableSpawnPosition[Random.Range(0, availableSpawnPosition.Length)];
-        }
-
         public void EnemyDied(HitInformation lastHitInformation)
         {
             DispatchEnemyDied(lastHitInformation);
@@ -75,6 +67,12 @@ namespace Gameplay
         {
             if (OnEnemyDiedEvent != null)
                 OnEnemyDiedEvent(hitInformation);
+        }
+
+        public void DispatchOnPlayerSpawnEvent(PlayerUnit targetPlayer)
+        {
+            if (OnPlayerSpawnEvent != null)
+                OnPlayerSpawnEvent(targetPlayer);
         }
     }
 }
