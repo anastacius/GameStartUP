@@ -29,13 +29,13 @@ namespace Gameplay.Unit.Movement
 
         private void Update()
         {
+            if(!isLocalPlayer)
+                return;
+
             CheckInput();
             Move();
-        }
-
-        private void FixedUpdte()
-        {
             Turn();
+
         }
 
         private void Turn()

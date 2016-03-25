@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Gameplay.Attribute;
+using UnityEngine.Networking;
 
 namespace Gameplay.Unit.Movement
 {
     [RequireComponent(typeof(Rigidbody), typeof(NavMeshAgent))]
-    public class BaseMovement : MonoBehaviour
+    public class BaseMovement : NetworkBehaviour
     {
         protected NavMeshAgent navMeshAgent;
         protected Rigidbody rigidBody;

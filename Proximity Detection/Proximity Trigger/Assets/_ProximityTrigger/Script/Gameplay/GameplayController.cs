@@ -30,18 +30,18 @@ namespace Gameplay
        
         private void Start()
         {
-            SpawnPlayer();
+            //SpawnPlayer();
 
-            DispatchGameStarted();
+            //DispatchGameStarted();
         }
-
+        /*
         private void DispatchGameStarted()
         {
             if (GameStartedEvent != null)
                 GameStartedEvent();
 
         }
-
+        
         private void SpawnPlayer()
         {
             PlayerUnit playerClone = Instantiate(playerPrefab).GetComponent<PlayerUnit>();
@@ -58,7 +58,7 @@ namespace Gameplay
         {
             if (OnPlayerSpawnEvent != null)
                 OnPlayerSpawnEvent(targetPlayer);
-        }
+        }*/
 
         private Transform GetRandomSpawPoint()
         {

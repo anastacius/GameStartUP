@@ -900,6 +900,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 564671877}
+  - 114: {fileID: 564671878}
   m_Layer: 0
   m_Name: Spaw Position (6)
   m_TagString: Untagged
@@ -919,6 +920,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1365996835}
   m_RootOrder: 6
+--- !u!114 &564671878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 564671876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1050975500, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &584512989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1764,6 +1776,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1059535028}
+  - 114: {fileID: 1059535029}
   m_Layer: 0
   m_Name: Spaw Position (4)
   m_TagString: Untagged
@@ -1783,6 +1796,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1365996835}
   m_RootOrder: 4
+--- !u!114 &1059535029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1059535027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1050975500, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1059682133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1972,6 +1996,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1253686190}
+  - 114: {fileID: 1253686191}
   m_Layer: 0
   m_Name: Spaw Position (2)
   m_TagString: Untagged
@@ -1991,6 +2016,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1365996835}
   m_RootOrder: 2
+--- !u!114 &1253686191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1253686189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1050975500, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1365996834
 GameObject:
   m_ObjectHideFlags: 0
@@ -2202,6 +2238,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1478525505}
+  - 114: {fileID: 1478525506}
   m_Layer: 0
   m_Name: Spaw Position (1)
   m_TagString: Untagged
@@ -2221,6 +2258,126 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1365996835}
   m_RootOrder: 1
+--- !u!114 &1478525506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1478525504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1050975500, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1485500821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1485500824}
+  - 114: {fileID: 1485500823}
+  - 114: {fileID: 1485500822}
+  m_Layer: 0
+  m_Name: Network Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1485500822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1485500821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 227461547, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+  showGUI: 1
+  offsetX: 0
+  offsetY: 0
+--- !u!114 &1485500823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1485500821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -822479833, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NetworkPort: 7777
+  m_ServerBindToIP: 0
+  m_ServerBindAddress: 
+  m_NetworkAddress: localhost
+  m_DontDestroyOnLoad: 1
+  m_RunInBackground: 1
+  m_ScriptCRCCheck: 1
+  m_MaxDelay: 0.01
+  m_LogLevel: 2
+  m_PlayerPrefab: {fileID: 128140, guid: fbeb438fee31b9046b691bf392cd748b, type: 2}
+  m_AutoCreatePlayer: 1
+  m_PlayerSpawnMethod: 1
+  m_OfflineScene: 
+  m_OnlineScene: 
+  m_SpawnPrefabs: []
+  m_CustomConfig: 0
+  m_MaxConnections: 4
+  m_ConnectionConfig:
+    m_PacketSize: 1500
+    m_FragmentSize: 500
+    m_ResendTimeout: 1200
+    m_DisconnectTimeout: 2000
+    m_ConnectTimeout: 2000
+    m_MinUpdateTimeout: 10
+    m_PingTimeout: 500
+    m_ReducedPingTimeout: 100
+    m_AllCostTimeout: 20
+    m_NetworkDropThreshold: 5
+    m_OverflowDropThreshold: 5
+    m_MaxConnectionAttempt: 10
+    m_AckDelay: 33
+    m_MaxCombinedReliableMessageSize: 100
+    m_MaxCombinedReliableMessageCount: 10
+    m_MaxSentMessageQueueSize: 128
+    m_IsAcksLong: 0
+    m_UsePlatformSpecificProtocols: 0
+    m_Channels: []
+  m_GlobalConfig:
+    m_ThreadAwakeTimeout: 1
+    m_ReactorModel: 0
+    m_ReactorMaximumReceivedMessages: 1024
+    m_ReactorMaximumSentMessages: 1024
+    m_MaxPacketSize: 2000
+  m_Channels: 0500000000000000
+  m_UseWebSockets: 0
+  m_UseSimulator: 0
+  m_SimulatedLatency: 1
+  m_PacketLossPercentage: 0
+  m_MatchHost: mm.unet.unity3d.com
+  m_MatchPort: 443
+  isNetworkActive: 0
+  matchMaker: {fileID: 0}
+  matchName: default
+  matchSize: 4
+--- !u!4 &1485500824
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1485500821}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &1486929280
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,6 +2471,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1519399238}
+  - 114: {fileID: 1519399239}
   m_Layer: 0
   m_Name: Spaw Position (3)
   m_TagString: Untagged
@@ -2333,6 +2491,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1365996835}
   m_RootOrder: 3
+--- !u!114 &1519399239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1519399237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1050975500, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1550811460
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,6 +2715,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1606627015}
+  - 114: {fileID: 1606627016}
   m_Layer: 0
   m_Name: Spaw Position (7)
   m_TagString: Untagged
@@ -2565,6 +2735,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1365996835}
   m_RootOrder: 7
+--- !u!114 &1606627016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1606627014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1050975500, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1653830234 stripped
 Transform:
   m_PrefabParentObject: {fileID: 492396, guid: 432b244905aa44542a67aab79c57b577, type: 2}
@@ -2577,6 +2758,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1658365475}
+  - 114: {fileID: 1658365476}
   m_Layer: 0
   m_Name: Spaw Position
   m_TagString: Untagged
@@ -2596,6 +2778,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1365996835}
   m_RootOrder: 0
+--- !u!114 &1658365476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1658365474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1050975500, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1660416410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2651,6 +2844,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1692804980}
+  - 114: {fileID: 1692804981}
   m_Layer: 0
   m_Name: Spaw Position (5)
   m_TagString: Untagged
@@ -2670,6 +2864,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1365996835}
   m_RootOrder: 5
+--- !u!114 &1692804981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1692804979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1050975500, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1727014865
 GameObject:
   m_ObjectHideFlags: 0

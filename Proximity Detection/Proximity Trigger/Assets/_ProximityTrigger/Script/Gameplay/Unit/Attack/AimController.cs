@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Gameplay.Unit.Attack
 {
-    public class AimController : MonoBehaviour
+    public class AimController : NetworkBehaviour
     {
         private BaseWeapon currentWeapon;
         private BaseUnit baseUnit;
@@ -22,6 +22,10 @@ namespace Gameplay.Unit.Attack
 
         private void Update()
         {
+            if(!isLocalPlayer)
+                return;
+
+
             if (Input.GetMouseButton(0))
             {
                 if(!currentWeapon.HaveAmmo())

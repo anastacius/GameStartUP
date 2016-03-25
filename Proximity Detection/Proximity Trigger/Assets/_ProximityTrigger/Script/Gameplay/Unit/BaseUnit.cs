@@ -1,13 +1,14 @@
-﻿using System;
+using System;
 using UnityEngine;
 using Gameplay.Attribute;
 using Gameplay.Unit.Attack;
 using Gameplay.Unit.Movement;
+using UnityEngine.Networking;
 
 namespace Gameplay.Unit
 {
     [RequireComponent(typeof(BaseMovement))]
-    public class BaseUnit : MonoBehaviour, IHitByBullet
+    public class BaseUnit : NetworkBehaviour, IHitByBullet
     {
         private AttributePool attributePool;
         private BaseMovement baseMovement;
@@ -29,6 +30,11 @@ namespace Gameplay.Unit
         {
             attributePool.GetAttribute(AttributeType.Health).OnAttributeOver += OnHealthOver;
             baseMovement.Initialize();
+        }
+
+        public override void OnStartLocalPlayer()
+        {
+            Initialize();
         }
 
         public virtual void Initialize()
@@ -57,7 +63,7 @@ namespace Gameplay.Unit
 
         }
 
-        
+
 
         public virtual void Hit(HitInformation hitInformation)
         {
