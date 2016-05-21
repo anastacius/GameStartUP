@@ -10,9 +10,13 @@ namespace Gameplay.Unit.Movement
 
         private Vector3 playerInput = Vector3.zero;
         private Quaternion mouseRotation = Quaternion.identity;
+        private float horizontalInput;
+        private float verticalInput;
+
         private void CheckInput()
         {
-            playerInput = Vector3.forward*Input.GetAxis("Vertical") + Vector3.right*Input.GetAxis("Horizontal");
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
 
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -27,7 +31,7 @@ namespace Gameplay.Unit.Movement
             }
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             CheckInput();
             Move();
@@ -41,8 +45,9 @@ namespace Gameplay.Unit.Movement
 
         private void Move()
         {
-            Vector3 finalSpeed = playerInput*moveSpeedValue*Time.fixedDeltaTime;
-            navMeshAgent.Move(finalSpeed);
+            Vector3 movement = new Vector3(horizontalInput, 0, verticalInput);
+            movement = movement.normalized*moveSpeedValue*Time.deltaTime;
+            navMeshAgent.Move(movement);
         }
     }
 }

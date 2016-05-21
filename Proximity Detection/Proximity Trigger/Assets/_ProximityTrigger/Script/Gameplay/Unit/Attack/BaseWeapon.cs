@@ -44,9 +44,8 @@ namespace Gameplay.Unit.Attack
             lastShootTime = Time.time + currentWeaponDefinition.GetCooldown();
             currentWeaponDefinition.SpentAmmo();
             BaseBullet bulletClone = SimplePool.Spawn(bullet.gameObject).GetComponent<BaseBullet>();
-            bulletClone.transform.SetParent(transform);
-            bulletClone.transform.localPosition = Vector3.zero;
-            bulletClone.transform.forward = transform.forward;
+            bulletClone.transform.position = bulletExitPoint.position;
+            bulletClone.transform.forward = bulletExitPoint.forward;
             bulletClone.Initialize(this);
         }
 

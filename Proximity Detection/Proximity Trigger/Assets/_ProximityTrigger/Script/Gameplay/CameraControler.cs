@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Gameplay
 {
-    public class CameraControll : MonoBehaviour
+    public class CameraControler : MonoBehaviour
     {
         [SerializeField]
         private Vector3 playerOffset;
         [SerializeField]
-        private float cameraSpeed = 5;
-
+        private float smoothTime = 0.3f;
+        private Vector3 velocity = Vector3.zero;
 
         private Transform playerTransform;
         private GameplayController gameplayController;
@@ -33,7 +33,7 @@ namespace Gameplay
             playerTransform = player.transform;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             if(playerTransform == null)
                 return;
@@ -44,7 +44,8 @@ namespace Gameplay
         private void UpdateCameraPosition()
         {
             Vector3 finalPosition = playerTransform.position - playerOffset;
-            transform.position = Vector3.Lerp(transform.position, finalPosition, cameraSpeed*Time.deltaTime);
+            transform.position = Vector3.SmoothDamp(transform.position, finalPosition,
+                ref velocity, smoothTime);
         }
     }
 }

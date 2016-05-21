@@ -10,6 +10,7 @@ namespace Gameplay.Unit.Attack
         public BaseWeapon Weapon;
         public Vector3 HitPosition;
     }
+
     public class BaseBullet : MonoBehaviour
     {
         protected BaseWeapon baseWeapon;
